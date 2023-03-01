@@ -1,23 +1,21 @@
-import { auth } from "./firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import "./App.css";
-import NavBar from "./components/NavBar";
-import ChatBox from "./components/ChatBox";
-import Welcome from "./components/Welcome";
+import "./index.css";
+import Home from "./pages/Home";
+import UserForm from "./pages/UserForm";
+import UserHobbies from "./pages/UserHobbies";
+import Quiz from "./pages/Quiz";
+import CardsPage from "./pages/CardsPage";
+import ChatPage from "./pages/ChatPage";
 
 function App() {
-  const [user] = useAuthState(auth);
-
   return (
-    <div className="App">
-      <NavBar />
-      {!user ? (
-        <Welcome />
-      ) : (
-        <>
-          <ChatBox />
-        </>
-      )}
+    <div>
+      <Home />
+      <UserForm />
+      <UserHobbies />
+      <Quiz />
+      <CardsPage />
+      <ChatPage />
     </div>
   );
 }
