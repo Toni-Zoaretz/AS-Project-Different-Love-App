@@ -108,3 +108,18 @@ p {
   gap: 10px;
   /* justify-content: center; */
 }
+
+.card {
+  border: 1px solid black;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-items {
+  border: 1px solid pink;
+  display: flex;
+  flex-direction: column;
+}

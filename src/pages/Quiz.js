@@ -2,10 +2,9 @@ import React from "react";
 import { questions } from "../questions";
 function Quiz() {
   console.log("toni");
-  // console.log(questions);
-  // console.log(questions.map((ans) => ans.answers));
-  // const answers = questions.map((oneAnswer) => oneAnswer.answers);
-  // console.log(answers);
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
   return (
     <div className="page">
       Quiz
@@ -14,19 +13,35 @@ function Quiz() {
           <div key={index} className="quiz-div">
             <h2>{item.title}</h2>
             <div className="answer-div">
-              <input type="radio" value={item.answers[0]} />
+              <input
+                type="radio"
+                value={item.answers[0]}
+                onChange={handleChange}
+              />
               <span>{item.answers[0]}</span>
             </div>
             <div className="answer-div">
-              <input type="radio" value={item.answers[1]} />
+              <input
+                type="radio"
+                value={item.answers[1]}
+                onChange={handleChange}
+              />
               <span>{item.answers[1]}</span>
             </div>
             <div className="answer-div">
-              <input type="radio" value={item.answers[2]} />
+              <input
+                type="radio"
+                value={item.answers[2]}
+                onChange={handleChange}
+              />
               <span>{item.answers[2]}</span>
             </div>
             <div className="answer-div">
-              <input type="radio" value={item.answers[3]} />
+              <input
+                type="radio"
+                value={item.answers[3]}
+                onChange={handleChange}
+              />
               <span>{item.answers[3]}</span>
             </div>
           </div>
