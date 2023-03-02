@@ -17,13 +17,6 @@ function Home() {
           ducimus qui, minima dolor numquam illum, perspiciatis natus facilis id
           nobis. Veniam ab a vero aspernatur laborum adipisci iusto quas
           nesciunt repudiandae repellendus nulla, maiores cupiditate
-          voluptatibus repellat unde sapiente quis soluta nam quibusdam at
-          reiciendis deserunt. Cupiditate fugiat corporis libero accusantium
-          soluta maxime repudiandae! Laboriosam, rem iusto maxime ullam
-          reprehenderit voluptatem. Et sunt blanditiis corrupti, laborum
-          molestiae quasi maxime provident officia dolorem possimus eum minima
-          alias amet dolores adipisci, sint asperiores ducimus. Sit asperiores
-          ad minus debitis optio deleniti doloribus dolore esse nihil? Aliquam,
         </p>
         <button className="btn">Lets Start!</button>
       </div>

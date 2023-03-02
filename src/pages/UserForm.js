@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-
+import { useGlobalContext } from "../context/context";
+import api from "../api";
 function UserForm() {
-  // const [fullName, setFullName] = useState("");
-  // const [age, setAge] = useState("");
-  // const [gender, setGender] = useState("");
-  // const [status, setstatus] = useState("");
-  // const [isSmoking, setIsSmoking] = useState("");
-
+  const { setNewUser } = useGlobalContext();
   const [formData, setFormData] = useState({
     fullName: "",
     age: "",
@@ -25,9 +21,15 @@ function UserForm() {
     // console.log(formData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    setNewUser(formData);
+    try {
+      await api.post("/users", formData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -68,7 +70,7 @@ function UserForm() {
           <option>In Special Occasions</option>
         </select>
         <button className="btn" type="submit">
-          Login
+          Submit
         </button>
       </form>
     </div>

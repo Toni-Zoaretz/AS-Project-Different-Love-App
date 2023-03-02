@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useGlobalContext } from "../context/context";
+
 import api from "../api";
 import { BsFlower1 } from "react-icons/bs";
 function CardsPage() {
-  const [usersData, setUsersData] = useState("");
+  const { newUser } = useGlobalContext();
+  const [usersData, setUsersData] = useState([]);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -13,22 +16,22 @@ function CardsPage() {
       }
     };
     getData();
-  }, []);
+  }, [usersData, newUser]);
 
   return (
-    <div className="page">
+    <div className="page cards-page">
       CardsPage
-      {usersData.map((item, index) => {
+      {usersData?.map((item, index) => {
         return (
           <div key={index} className="card">
-            <BsFlower1 />
-            <div className="card-items">
-              {item.fullName}
-              {item.age}
-              {item.gender}
-              {item.status}
-              {item.smoking}
+            <div>
+              <BsFlower1 className="icon" />
             </div>
+            <div className="card-items">{item.fullName}</div>
+            <div className="card-items">{item.age}</div>
+            <div className="card-items">{item.gender}</div>
+            <div className="card-items">{item.status}</div>
+            <div className="card-items">{item.smoking}</div>
           </div>
         );
       })}
