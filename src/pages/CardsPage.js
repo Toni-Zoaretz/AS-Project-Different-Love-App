@@ -8,6 +8,8 @@ import { BsFlower1 } from "react-icons/bs";
 
 function CardsPage() {
   const { reloadUsersCounter } = useGlobalContext();
+  const { activeUser, setActiveUser } = useGlobalContext();
+  const [activeUserToBe, setActiveUserToBe] = useState(activeUser);
   const [usersData, setUsersData] = useState();
   useEffect(() => {
     // We want to reload users for each change of the counter
@@ -25,6 +27,18 @@ function CardsPage() {
 
   return (
     <div className="page cards-page">
+      <input
+        type="number"
+        value={activeUserToBe}
+        onChange={(e) => setActiveUserToBe(e.target.value)}
+      />
+      <button
+        onClick={() => {
+          setActiveUser(activeUserToBe);
+        }}
+      >
+        Set Active User
+      </button>
       CardsPage
       {usersData?.map((item, index) => {
         return (
