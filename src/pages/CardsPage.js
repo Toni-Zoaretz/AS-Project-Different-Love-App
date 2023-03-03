@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/context";
+import { questionsBySlug } from "../questions";
 
 import api from "../api";
+
 import { BsFlower1 } from "react-icons/bs";
+
 function CardsPage() {
-  const { newUser } = useGlobalContext();
+  const { activeUser } = useGlobalContext();
   const [usersData, setUsersData] = useState([]);
   useEffect(() => {
+    activeUser.toString();
     const getData = async () => {
       try {
         let respond = await api.get("/users");
@@ -16,7 +20,7 @@ function CardsPage() {
       }
     };
     getData();
-  }, [usersData, newUser]);
+  }, [activeUser]);
 
   return (
     <div className="page cards-page">
@@ -32,6 +36,13 @@ function CardsPage() {
             <div className="card-items">{item.gender}</div>
             <div className="card-items">{item.status}</div>
             <div className="card-items">{item.smoking}</div>
+            <div className="card-items">
+              {item.trivia?.map((q) => (
+                <i>
+                  {questionsBySlug[q].title}: {questionsBySlug[q].correctAnswer}
+                </i>
+              ))}
+            </div>
           </div>
         );
       })}

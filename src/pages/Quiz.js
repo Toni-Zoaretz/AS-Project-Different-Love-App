@@ -1,53 +1,71 @@
-import React from "react";
+// import React, { useState } from "react";
 import { questions } from "../questions";
+import { useGlobalContext } from "../context/context";
+import api from "../api";
+import { useState } from "react";
+
 function Quiz() {
-  console.log("toni");
-  const handleChange = (e) => {
-    console.log(e.target.value);
+  const { activeUser } = useGlobalContext();
+  const [quizAnswers, setQuizAnswers] = useState(() => new Map());
+  const [correctAnswers, setCorrectAnswers] = useState(() => new Set());
+
+  //  const { userQuizAnswers, setUserQuizAnswers } = useGlobalContext();
+  const handleChange = (questionIndex, answerIndex) => {
+    const theQuestion = questions[questionIndex];
+    setCorrectAnswers((set) => {
+      if (theQuestion.correctAnswer === theQuestion.answers[answerIndex]) {
+        set.add(theQuestion.id);
+      } else {
+        set.delete(theQuestion.id);
+      }
+
+      return new Set(set);
+    });
+
+    setQuizAnswers((prev) => {
+      prev.set(questionIndex, answerIndex);
+      return new Map(prev);
+    });
   };
+
+  const handleSendBtn = () => {
+    if (!activeUser) {
+      alert("no user");
+    }
+
+    api.put(`/users/${activeUser}`, { trivia: Array.from(correctAnswers) });
+  };
+
+  // if (!activeUser) {
+  // return <div className="page">Complete registration first!</div>;
+  // }
+
   return (
     <div className="page">
       Quiz
-      {questions.map((item, index) => {
+      {questions.map((item, questionIndex) => {
         return (
-          <div key={index} className="quiz-div">
+          <div key={item.id} className="quiz-div">
             <h2>{item.title}</h2>
-            <div className="answer-div">
-              <input
-                type="radio"
-                value={item.answers[0]}
-                onChange={handleChange}
-              />
-              <span>{item.answers[0]}</span>
-            </div>
-            <div className="answer-div">
-              <input
-                type="radio"
-                value={item.answers[1]}
-                onChange={handleChange}
-              />
-              <span>{item.answers[1]}</span>
-            </div>
-            <div className="answer-div">
-              <input
-                type="radio"
-                value={item.answers[2]}
-                onChange={handleChange}
-              />
-              <span>{item.answers[2]}</span>
-            </div>
-            <div className="answer-div">
-              <input
-                type="radio"
-                value={item.answers[3]}
-                onChange={handleChange}
-              />
-              <span>{item.answers[3]}</span>
-            </div>
+            {[0, 1, 2, 3].map((answerIndex) => {
+              return (
+                <div className="answer-div">
+                  <input
+                    type="radio"
+                    value={item.answers[answerIndex]}
+                    checked={quizAnswers.get(questionIndex) === answerIndex}
+                    onChange={() => handleChange(questionIndex, answerIndex)}
+                  />
+                  <span>{item.answers[answerIndex]}</span>
+                </div>
+              );
+            })}
           </div>
         );
       })}
-      <button className="btn">Send</button>
+      <button className="btn" onClick={handleSendBtn}>
+        Send
+      </button>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useGlobalContext } from "../context/context";
 import api from "../api";
 function UserForm() {
-  const { setNewUser } = useGlobalContext();
+  const { activeUser, setActiveUser } = useGlobalContext();
   const [formData, setFormData] = useState({
     fullName: "",
     age: "",
@@ -11,22 +11,23 @@ function UserForm() {
     smoking: "",
   });
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    setFormData({
-      ...formData,
-      [name]: value,
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
     });
-    // console.log(formData);
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    setNewUser(formData);
     try {
-      await api.post("/users", formData);
+      const newUserDataFromServer = await api.post("/users", formData);
+      setActiveUser(newUserDataFromServer.data.id);
     } catch (error) {
       console.error(error);
     }
@@ -69,7 +70,7 @@ function UserForm() {
           <option>No</option>
           <option>In Special Occasions</option>
         </select>
-        <button className="btn" type="submit">
+        <button className="btn" type="submit" disabled={!!activeUser}>
           Submit
         </button>
       </form>
