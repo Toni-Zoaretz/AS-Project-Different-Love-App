@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useGlobalContext } from "../context/context";
 import api from "../api";
 function UserForm() {
+  const { reloadUsersCounter, setReloadUsersCounter } = useGlobalContext();
   const { activeUser, setActiveUser } = useGlobalContext();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -28,6 +29,7 @@ function UserForm() {
     try {
       const newUserDataFromServer = await api.post("/users", formData);
       setActiveUser(newUserDataFromServer.data.id);
+      setReloadUsersCounter((c) => (c += 1));
     } catch (error) {
       console.error(error);
     }

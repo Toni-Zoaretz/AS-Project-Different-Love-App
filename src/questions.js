@@ -27,7 +27,7 @@ export const questions = [
   },
   {
     id: 4,
-    _slug: "HARRY_POTTER_AUTHOR",
+    // _slug: "HARRY_POTTER_AUTHOR",
     subject: "Books",
     title: "Who Wrote The Book Harry Potter?",
     answers: [
@@ -40,6 +40,10 @@ export const questions = [
   },
 ];
 
-export const questionsBySlug = Object.fromEntries(
+// const step1 = questions.map((q) => [q.id, q]);
+
+// [["1", {...}], ["2", {...}]]
+
+export const questionsById = Object.fromEntries(
   questions.map((q) => [q.id, q])
 );

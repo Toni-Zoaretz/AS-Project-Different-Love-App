@@ -5,8 +5,10 @@ import api from "../api";
 import { useState } from "react";
 
 function Quiz() {
+  const { reloadUsersCounter, setReloadUsersCounter } = useGlobalContext();
   const { activeUser } = useGlobalContext();
   const [quizAnswers, setQuizAnswers] = useState(() => new Map());
+
   const [correctAnswers, setCorrectAnswers] = useState(() => new Set());
 
   //  const { userQuizAnswers, setUserQuizAnswers } = useGlobalContext();
@@ -24,21 +26,25 @@ function Quiz() {
 
     setQuizAnswers((prev) => {
       prev.set(questionIndex, answerIndex);
+      // return prev;
       return new Map(prev);
     });
   };
 
-  const handleSendBtn = () => {
+  const handleSendBtn = async () => {
     if (!activeUser) {
       alert("no user");
     }
 
-    api.put(`/users/${activeUser}`, { trivia: Array.from(correctAnswers) });
+    await api.put(`/users/${activeUser}`, {
+      trivia: Array.from(correctAnswers),
+    });
+    setReloadUsersCounter((c) => (c += 1));
   };
 
-  // if (!activeUser) {
-  // return <div className="page">Complete registration first!</div>;
-  // }
+  if (!activeUser) {
+    return <div className="page">Complete registration first!</div>;
+  }
 
   return (
     <div className="page">

@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/context";
-import { questionsBySlug } from "../questions";
+import { questionsById } from "../questions";
 
 import api from "../api";
 
 import { BsFlower1 } from "react-icons/bs";
 
 function CardsPage() {
-  const { activeUser } = useGlobalContext();
-  const [usersData, setUsersData] = useState([]);
+  const { reloadUsersCounter } = useGlobalContext();
+  const [usersData, setUsersData] = useState();
   useEffect(() => {
-    activeUser.toString();
+    // We want to reload users for each change of the counter
+    reloadUsersCounter?.toString();
     const getData = async () => {
       try {
         let respond = await api.get("/users");
@@ -20,7 +21,7 @@ function CardsPage() {
       }
     };
     getData();
-  }, [activeUser]);
+  }, [reloadUsersCounter]);
 
   return (
     <div className="page cards-page">
@@ -39,7 +40,7 @@ function CardsPage() {
             <div className="card-items">
               {item.trivia?.map((q) => (
                 <i>
-                  {questionsBySlug[q].title}: {questionsBySlug[q].correctAnswer}
+                  {questionsById[q].title}: {questionsById[q].correctAnswer}
                 </i>
               ))}
             </div>

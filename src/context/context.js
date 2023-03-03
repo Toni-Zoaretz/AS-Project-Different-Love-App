@@ -7,6 +7,7 @@ const AppProvider = ({ children }) => {
   const [newUser, setNewUser] = useState({});
   const [quizAnswers, setQuizAnswers] = useState(questions.map((item) => ""));
   const [userQuizAnswers, setUserQuizAnswers] = useState([]);
+  const [reloadUsersCounter, setReloadUsersCounter] = useState(0);
 
   return (
     <AppContext.Provider
@@ -19,6 +20,8 @@ const AppProvider = ({ children }) => {
         setUserQuizAnswers,
         activeUser,
         setActiveUser,
+        reloadUsersCounter,
+        setReloadUsersCounter,
       }}
     >
       {children}
