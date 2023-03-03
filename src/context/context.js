@@ -8,6 +8,26 @@ const AppProvider = ({ children }) => {
   const [quizAnswers, setQuizAnswers] = useState(questions.map((item) => ""));
   const [userQuizAnswers, setUserQuizAnswers] = useState([]);
   const [reloadUsersCounter, setReloadUsersCounter] = useState(0);
+  const [jazzMusicHobby, setJazzMusicHobby] = useState(false);
+  const [moviesHobby, setMoviesHobby] = useState(false);
+  const [foodieHobby, setFoodieHobby] = useState(false);
+  const [booksHobby, setBooksHobby] = useState(false);
+
+  const handleHobbyBtn = (e) => {
+    if (e.target.value === "Jazz Music") {
+      setJazzMusicHobby(true);
+    }
+    if (e.target.value === "Movies") {
+      setMoviesHobby(true);
+    }
+    if (e.target.value === "Foodie") {
+      setFoodieHobby(true);
+    }
+    if (e.target.value === "Books") {
+      setBooksHobby(true);
+    }
+    console.log(e.target.value);
+  };
 
   return (
     <AppContext.Provider
@@ -22,6 +42,15 @@ const AppProvider = ({ children }) => {
         setActiveUser,
         reloadUsersCounter,
         setReloadUsersCounter,
+        jazzMusicHobby,
+        setJazzMusicHobby,
+        moviesHobby,
+        setMoviesHobby,
+        foodieHobby,
+        setFoodieHobby,
+        booksHobby,
+        setBooksHobby,
+        handleHobbyBtn,
       }}
     >
       {children}

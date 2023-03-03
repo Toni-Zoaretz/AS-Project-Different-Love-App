@@ -54,7 +54,8 @@ function CardsPage() {
             <div className="card-items">
               {item.trivia?.map((q) => (
                 <i>
-                  {questionsById[q].title}: {questionsById[q].correctAnswer}
+                  {/* {questionsById[q].title}: {questionsById[q].correctAnswer} */}
+                  {questionsById[q].subject}
                 </i>
               ))}
             </div>

@@ -1,9 +1,9 @@
 import React from "react";
+import { useGlobalContext } from "../context/context";
 
 function UserHobbies() {
-  const handleHobbyBtn = (e) => {
-    console.log(e.target.value);
-  };
+  const { handleHobbyBtn } = useGlobalContext();
+
   return (
     <div className="page user-buttons">
       UserHobbies
