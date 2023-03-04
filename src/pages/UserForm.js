@@ -36,10 +36,9 @@ function UserForm() {
   };
 
   return (
-    <div className="page wrapper">
-      UserForm
+    <div className="page wrapper user-form-page">
       <form className="form" onSubmit={handleSubmit}>
-        <h2>WELCOME</h2>
+        <h2>REGISTER</h2>
         <input
           type="text"
           name="fullName"

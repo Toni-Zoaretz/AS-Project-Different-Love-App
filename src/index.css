@@ -1,26 +1,55 @@
 .page {
-  border: 2px solid pink;
   height: 100vh;
   width: 100%;
-  text-align: center;
+}
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-steps-title {
+  color: #ef4480;
+  font-weight: 500;
+  padding: 0.8rem 0rem;
+}
+
+.home-info,
+.app-steps {
+  line-height: 1.8rem;
+  padding: 4rem 0rem;
 }
 
 .home-info {
-  /* border: 0.5px solid black; */
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
-  /* padding: 5rem 15rem; */
+  text-align: center;
+  width: 50%;
+  height: 100vh;
 }
 
-.btn {
-  padding: 0.5rem;
-  margin-top: 10px;
+.app-steps {
+  width: 30%;
+  height: 100vh;
 }
 
-p {
-  padding: 5rem;
+.home-info h1 {
+  font-size: 3rem;
+  line-height: 2.7rem;
+  color: #ef4480;
+}
+
+.home-info .home-title {
+  color: #333;
+}
+
+.app-steps ul {
+  list-style: none;
+}
+
+.app-steps ul li {
+  margin: 1rem 0;
 }
 
 /* /* -------------------form----------------------- */
@@ -47,7 +76,25 @@ p {
   height: 70%;
   min-width: 340px;
   border: 1px solid white;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.162) 0px 8px 24px;
+}
+
+.user-form-page h2 {
+  color: #333;
+}
+
+.user-form-page {
+  background: url("./assets/register.png") no-repeat left bottom;
+}
+.user-form-page select {
+  padding: 2px 12px;
+
+  width: 50%;
+  border: 1px solid #e8eaed;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 1px 3px -2px #9098a9;
+  font-size: 14px;
 }
 
 .wrapper .form input {
@@ -61,33 +108,110 @@ p {
   color: black;
 }
 
+.icon-home-page {
+  padding-right: 3px;
+  font-size: 1.5rem;
+  color: #e2294f;
+}
+
 .btn {
   font-size: 1.1rem;
   font-family: "Roboto", sans-serif;
-  padding: 10px 100px;
-  background-image: linear-gradient(
-    to right,
-    #84fab0 0%,
-    #8fd3f4 51%,
-    #84fab0 100%
-  );
-  border: 1px solid rgba(221, 160, 221, 0.006);
+  padding: 10px 50px;
+  border: 2px solid #ef4480;
+  background: #ef4480;
   border-radius: 25px;
-  color: #333;
+  color: white;
   font-weight: 500;
   cursor: pointer;
-  transition: 0.5s;
-  background-size: 200% auto;
-  margin-top: 1rem;
 }
 
-.user-buttons {
+.hobbies-page {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 5rem;
+  /* padding-left: 5rem; */
+  background-color: rgba(255, 255, 255, 0.696);
+  position: relative;
+
+  /* border: 1px solid pink; */
 }
 
+.hobbies-page::before {
+  background: url("./assets/hobbies-page.png") no-repeat right top;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.hobbies-div {
+  display: flex;
+  gap: 1rem;
+  text-align: center;
+}
+
+.jazz-img {
+  width: 250px;
+  /* padding-right: 5rem 0rem; */
+}
+
+.books-img {
+  width: 295px;
+}
+
+.foodie-img {
+  width: 280px;
+  padding-top: 50px;
+}
+
+.movies-img {
+  width: 280px;
+  padding-top: 18px;
+}
+
+.hobbies-title-div h2 {
+  color: #333;
+  font-size: 1.7rem;
+}
+
+.single-hobby {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 300px;
+  height: 35vh;
+}
+
+.hobbies-btn {
+  background-color: #333;
+  color: white;
+  border: 2px solid #333;
+
+  /* padding: 8px 80px; */
+}
+
+.hobbies-btn-btn {
+  padding: 8px 80px;
+  margin-top: 50px;
+}
+
+.books-btn {
+  margin-top: 15px;
+}
+
+.hobbies-btn-jazz {
+  padding: 8px 60px;
+  margin-top: 55px;
+}
+
+.hobbies-btn-foodie {
+  margin-top: 55px;
+}
 .quiz-div {
   display: flex;
   justify-content: center;
@@ -99,6 +223,10 @@ p {
 
 .quiz-div h2 {
   margin: 15px 0px;
+}
+
+.btn-quiz {
+  margin-top: 10rem;
 }
 
 .answer-div {
