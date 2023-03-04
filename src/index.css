@@ -55,13 +55,11 @@
 /* /* -------------------form----------------------- */
 
 .wrapper {
-  /* background-color: #f2f2f2; */
   height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
 }
 
 .form {
@@ -132,11 +130,13 @@
   align-items: center;
   flex-direction: column;
   gap: 5rem;
-  /* padding-left: 5rem; */
   background-color: rgba(255, 255, 255, 0.696);
   position: relative;
-
-  /* border: 1px solid pink; */
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+  /* width: 110rem; */
+  /* height: 93vh; */
 }
 
 .hobbies-page::before {
@@ -153,12 +153,14 @@
 .hobbies-div {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
   text-align: center;
+  width: 100%;
+  justify-content: center;
 }
 
 .jazz-img {
   width: 250px;
-  /* padding-right: 5rem 0rem; */
 }
 
 .books-img {
@@ -181,18 +183,16 @@
 }
 
 .single-hobby {
-  border: 1px solid black;
+  border: 2px solid rgba(128, 128, 128, 0.357);
   border-radius: 5px;
   width: 300px;
-  height: 35vh;
+  height: 350px;
 }
 
 .hobbies-btn {
   background-color: #333;
   color: white;
   border: 2px solid #333;
-
-  /* padding: 8px 80px; */
 }
 
 .hobbies-btn-btn {
@@ -217,8 +217,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* gap: 10px; */
-  /* width: 300px; */
 }
 
 .quiz-div h2 {
@@ -226,7 +224,7 @@
 }
 
 .btn-quiz {
-  margin-top: 10rem;
+  /* margin-top: 10rem; */
 }
 
 .answer-div {
@@ -234,7 +232,6 @@
   align-items: center;
   width: 200px;
   gap: 10px;
-  /* justify-content: center; */
 }
 
 .cards-page {
@@ -267,7 +264,71 @@
   align-items: center;
   justify-content: center;
   width: 200px;
-  /* gap: 1rem; */
-  /* gap: 10px; */
-  /* gap: 1rem; */
+}
+
+@media (min-width: 350px) and (max-width: 700px) {
+  .home-page {
+    flex-direction: column;
+    gap: 0rem;
+    /* padding: 0; */
+  }
+
+  .home-info {
+    padding: 0rem;
+  }
+
+  .home-info h1 {
+    font-size: 1rem;
+    line-height: 0rem;
+    color: #ef4480;
+  }
+
+  .woman-img {
+    width: 100px;
+  }
+  .home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .app-steps-title {
+    color: #ef4480;
+    font-weight: 500;
+    padding: 0.8rem 0rem;
+  }
+
+  .home-info {
+    display: flex;
+    gap: 0;
+    padding: 0rem;
+    margin: 0rem;
+    width: 20px;
+    height: 0;
+    /* flex-direction: row; */
+  }
+  .app-steps {
+    padding: 0rem;
+    width: 100%;
+    text-align: center;
+    line-height: 1rem;
+    /* margin: 0rem; */
+  }
+
+  .app-steps ul li {
+    margin: 0rem;
+    font-size: 0.8rem;
+  }
+
+  .home-info {
+    display: flex;
+    /* flex-direction: row; */
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .hobbies-page {
+    flex-direction: row;
+  }
 }
