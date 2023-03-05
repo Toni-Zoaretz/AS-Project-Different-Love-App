@@ -6,8 +6,8 @@ function Home() {
     <div className="page home-page">
       <div className="home-info">
         <h1>
-          <span className="home-title">WELCOME TO A DIFFERENT</span> <br></br>
-          LOVE APP
+          <p className="home-title">WELCOME TO A DIFFERENT</p>
+          <p>LOVE APP</p>
         </h1>
         <span>
           <img className="woman-img" src={img1} alt="woman" />
@@ -73,9 +73,11 @@ function Home() {
             You can then choose with who you want to chat based on their hobbies
             only
           </li>
-          <li className="app-steps-title">OPEN YOUR HEART!</li>
         </ul>
-        <button className="btn">Lets Start!</button>
+        <div className="lets-start-btn-container">
+          <span className="app-steps-title">OPEN YOUR HEART!</span>
+          <button className="btn">Lets Start!</button>
+        </div>
       </div>
     </div>
   );
