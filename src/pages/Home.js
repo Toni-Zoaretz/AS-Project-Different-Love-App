@@ -63,7 +63,7 @@ function Home() {
             </span>
             Then you will move to the cards page where all users card are. you
             can find there all details and hobbies and also filter if you rather
-            see mans or woman.
+            see mans or woman. bla bla bla
           </li>
           <li>
             {" "}
