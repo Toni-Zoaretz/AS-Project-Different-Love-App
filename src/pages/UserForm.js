@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useGlobalContext } from "../context/context";
 import api from "../api";
 function UserForm() {
-  const { reloadUsersCounter, setReloadUsersCounter } = useGlobalContext();
+  const { setReloadUsersCounter } = useGlobalContext();
   const { activeUser, setActiveUser } = useGlobalContext();
   const [formData, setFormData] = useState({
     fullName: "",

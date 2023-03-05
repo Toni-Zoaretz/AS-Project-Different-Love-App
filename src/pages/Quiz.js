@@ -5,7 +5,7 @@ import api from "../api";
 import { useState } from "react";
 
 function Quiz() {
-  const { reloadUsersCounter, setReloadUsersCounter } = useGlobalContext();
+  const { setReloadUsersCounter } = useGlobalContext();
   const { jazzMusicHobby, moviesHobby, foodieHobby, booksHobby } =
     useGlobalContext();
   const { activeUser } = useGlobalContext();
