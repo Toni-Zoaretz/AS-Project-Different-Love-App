@@ -51,31 +51,13 @@ function Quiz() {
   // }
 
   return (
-    <div className="page">
-      {/* {questions.map((item, questionIndex) => {
-        return (
-          <div key={item.id} className="quiz-div">
-            <h2>{item.title}</h2>
-            {[0, 1, 2, 3].map((answerIndex) => {
-              return (
-                <div className="answer-div">
-                  <input
-                    type="radio"
-                    value={item.answers[answerIndex]}
-                    checked={quizAnswers.get(questionIndex) === answerIndex}
-                    onChange={() => handleChange(questionIndex, answerIndex)}
-                  />
-                  <span>{item.answers[answerIndex]}</span>
-                </div>
-              );
-            })}
-          </div>
-        );
-      })} */}
-
+    <div className="page quiz-page">
+      <div className="hobbies-title-div">
+        <h2 className="quiz-title">ANSWER THE QUIZ</h2>
+      </div>
       {jazzMusicHobby ? (
         <div key={questions[0].id} className="quiz-div">
-          <h2>{questions[0].title}</h2>
+          <h2 className="ques-titles">{questions[0].title}</h2>
           {[0, 1, 2, 3].map((answerIndex) => {
             return (
               <div className="answer-div">
@@ -86,7 +68,9 @@ function Quiz() {
                   checked={quizAnswers.get(0) === answerIndex}
                   onChange={() => handleChange(0, answerIndex)}
                 />
-                <span>{questions[0].answers[answerIndex]}</span>
+                <span className="quiz-answer">
+                  {questions[0].answers[answerIndex]}
+                </span>
               </div>
             );
           })}
@@ -94,7 +78,7 @@ function Quiz() {
       ) : null}
       {moviesHobby ? (
         <div key={questions[1].id} className="quiz-div">
-          <h2>{questions[1].title}</h2>
+          <h2 className="ques-titles">{questions[1].title}</h2>
           {[0, 1, 2, 3].map((answerIndex) => {
             return (
               <div className="answer-div">
@@ -105,7 +89,9 @@ function Quiz() {
                   checked={quizAnswers.get(1) === answerIndex}
                   onChange={() => handleChange(1, answerIndex)}
                 />
-                <span>{questions[1].answers[answerIndex]}</span>
+                <span className="quiz-answer">
+                  {questions[1].answers[answerIndex]}
+                </span>
               </div>
             );
           })}
@@ -113,7 +99,7 @@ function Quiz() {
       ) : null}
       {foodieHobby ? (
         <div key={questions[2].id} className="quiz-div">
-          <h2>{questions[2].title}</h2>
+          <h2 className="ques-titles">{questions[2].title}</h2>
           {[0, 1, 2, 3].map((answerIndex) => {
             return (
               <div className="answer-div">
@@ -124,7 +110,9 @@ function Quiz() {
                   checked={quizAnswers.get(2) === answerIndex}
                   onChange={() => handleChange(2, answerIndex)}
                 />
-                <span>{questions[2].answers[answerIndex]}</span>
+                <span className="quiz-answer">
+                  {questions[2].answers[answerIndex]}
+                </span>
               </div>
             );
           })}
@@ -132,7 +120,7 @@ function Quiz() {
       ) : null}
       {booksHobby ? (
         <div key={questions[3].id} className="quiz-div">
-          <h2>{questions[3].title}</h2>
+          <h2 className="ques-titles">{questions[3].title}</h2>
           {[0, 1, 2, 3].map((answerIndex) => {
             return (
               <div className="answer-div">
@@ -143,7 +131,9 @@ function Quiz() {
                   checked={quizAnswers.get(3) === answerIndex}
                   onChange={() => handleChange(3, answerIndex)}
                 />
-                <span>{questions[3].answers[answerIndex]}</span>
+                <span className="quiz-answer">
+                  {questions[3].answers[answerIndex]}
+                </span>
               </div>
             );
           })}
@@ -170,9 +160,11 @@ function Quiz() {
           </div>
         );
       })} */}
-      <button className="btn btn-quiz" onClick={handleSendBtn}>
-        Send
-      </button>
+      <div className="send-btn-container">
+        <button className="btn btn-quiz" onClick={handleSendBtn}>
+          Send
+        </button>
+      </div>
     </div>
   );
 }

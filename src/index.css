@@ -1,5 +1,5 @@
 .page {
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }
 
@@ -26,12 +26,12 @@
   flex-direction: column;
   text-align: center;
   width: 50%;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .app-steps {
   width: 30%;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .home-info h1 {
@@ -141,6 +141,7 @@
   position: relative;
   flex-wrap: wrap;
   width: 100%;
+  padding: 10rem 0;
   margin: 0 auto;
   /* width: 110rem; */
   /* height: 93vh; */
@@ -219,6 +220,47 @@
 .hobbies-btn-foodie {
   margin-top: 55px;
 }
+
+.quiz-page {
+  border: 1px solid rgb(216, 83, 105);
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.181);
+  position: relative;
+  margin: 0 auto;
+  padding: 5rem 0rem;
+}
+
+.quiz-page::before {
+  background: url("./assets/quiz-page.png") no-repeat;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.quiz-page .quiz-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0rem;
+  color: #333;
+}
+
+.ques-titles {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.send-btn-container {
+  /* border: 1px solid #333; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0rem;
+}
 .quiz-div {
   display: flex;
   justify-content: center;
@@ -226,13 +268,22 @@
   flex-direction: column;
 }
 
+.quiz-answer {
+  padding: 0.2rem;
+  /* border: 2px solid rgba(128, 128, 128, 0.154); */
+  font-size: 1rem;
+  /* margin: 2px; */
+}
+
 .quiz-div h2 {
   margin: 15px 0px;
 }
 
-/* .btn-quiz {
-  margin-top: 10rem;
-} */
+.btn-quiz {
+  padding: 10px 100px;
+  background-color: #333;
+  border: 2px solid #333;
+}
 
 .answer-div {
   display: flex;
@@ -273,7 +324,7 @@
   width: 200px;
 }
 
-@media (min-width: 350px) and (max-width: 700px) {
+@media (max-width: 769px) {
   .home-page {
     flex-direction: column;
     gap: 0rem;
@@ -281,13 +332,20 @@
   }
 
   .home-info h1 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 0rem;
     color: #ef4480;
+    padding: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .woman-img {
     width: 100%;
+    /* height: 100%; */
+    /* max-height: 500px; */
     /* height: 100%; */
   }
   .home-page {
@@ -306,7 +364,6 @@
     line-height: 0rem;
     padding: 0rem;
     width: 100%;
-    height: 100vh;
   }
 
   .app-steps {
@@ -325,5 +382,45 @@
 
   .hobbies-page {
     flex-direction: row;
+    padding-bottom: 20px;
+    padding-top: 0px;
+  }
+
+  .user-form-page {
+    background: none;
+  }
+
+  .quiz-page {
+    border: 1px solid rgb(216, 83, 105);
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.743);
+    position: relative;
+    margin: 0 auto;
+    padding: 0rem;
+  }
+
+  .quiz-page::before {
+    background: url("./assets/quiz-page.png") no-repeat;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .ques-titles {
+    font-size: 0.9rem;
+  }
+
+  .hobbies-title-div .quiz-title {
+    padding-bottom: 15px;
+    color: #333;
+    font-size: 1.4rem;
+  }
+
+  .btn-quiz {
+    padding: 8px 80px;
   }
 }
