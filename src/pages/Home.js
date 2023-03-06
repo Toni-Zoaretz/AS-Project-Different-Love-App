@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineCheckCircle } from "react-icons/md";
 import img1 from "../assets/undraw_intense_feeling_ft9s.png";
 function Home() {
+  const navigate = useNavigate();
+  const handleHomePageBtn = () => {
+    navigate("/register");
+  };
+
   return (
     <div className="page home-page">
       <div className="home-info">
@@ -76,7 +82,9 @@ function Home() {
         </ul>
         <div className="lets-start-btn-container">
           <span className="app-steps-title">OPEN YOUR HEART!</span>
-          <button className="btn">Lets Start!</button>
+          <button className="btn" onClick={handleHomePageBtn}>
+            Lets Start!
+          </button>
         </div>
       </div>
     </div>

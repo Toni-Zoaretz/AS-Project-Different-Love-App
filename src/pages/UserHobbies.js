@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/context";
 import jazzImg from "../assets/jazz.png";
 import moviesImg from "../assets/movies.png";
@@ -6,7 +7,13 @@ import foodieImg from "../assets/foodie.png";
 import booksImg from "../assets/books.png";
 
 function UserHobbies() {
+  const navigate = useNavigate();
+
   const { handleHobbyBtn } = useGlobalContext();
+
+  const handleContinueBtn = () => {
+    navigate("/quiz");
+  };
 
   return (
     <div className="page hobbies-page">
@@ -59,7 +66,9 @@ function UserHobbies() {
         </div>
       </div>
       <div>
-        <button className="btn">CONTINUE</button>
+        <button className="btn" onClick={handleContinueBtn}>
+          CONTINUE
+        </button>
       </div>
     </div>
   );

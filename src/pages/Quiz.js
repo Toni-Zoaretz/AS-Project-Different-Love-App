@@ -3,8 +3,11 @@ import { questions } from "../questions";
 import { useGlobalContext } from "../context/context";
 import api from "../api";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Quiz() {
+  const navigate = useNavigate();
+
   const { setReloadUsersCounter } = useGlobalContext();
   const { jazzMusicHobby, moviesHobby, foodieHobby, booksHobby } =
     useGlobalContext();
@@ -36,6 +39,8 @@ function Quiz() {
   };
 
   const handleSendBtn = async () => {
+    navigate("/allUsers");
+
     if (!activeUser) {
       alert("no user");
     }

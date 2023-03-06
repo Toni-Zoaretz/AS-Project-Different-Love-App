@@ -1,5 +1,6 @@
 import "./App.css";
 import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import UserForm from "./pages/UserForm";
 import UserHobbies from "./pages/UserHobbies";
@@ -8,16 +9,33 @@ import CardsPage from "./pages/CardsPage";
 import ChatPage from "./pages/ChatPage";
 
 function App() {
-  return (
-    <div>
-      <Home />
-      <UserForm />
-      <UserHobbies />
-      <Quiz />
-      <CardsPage />
-      <ChatPage />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/register",
+      element: <UserForm />,
+    },
+    {
+      path: "/userHobbies",
+      element: <UserHobbies />,
+    },
+    {
+      path: "/quiz",
+      element: <Quiz />,
+    },
+    {
+      path: "/allUsers",
+      element: <CardsPage />,
+    },
+    {
+      path: "/chat",
+      element: <ChatPage />,
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;

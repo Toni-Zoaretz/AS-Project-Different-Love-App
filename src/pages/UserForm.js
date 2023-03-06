@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/context";
 import api from "../api";
 function UserForm() {
+  const navigate = useNavigate();
   const { setReloadUsersCounter } = useGlobalContext();
   const { activeUser, setActiveUser } = useGlobalContext();
   const [formData, setFormData] = useState({
@@ -25,6 +27,7 @@ function UserForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    navigate("/userhobbies");
     console.log(formData);
     try {
       const newUserDataFromServer = await api.post("/users", formData);
@@ -54,7 +57,7 @@ function UserForm() {
           onChange={handleChange}
         ></input>
         <select name="gender" onChange={handleChange} value={formData.gender}>
-          <option>Gander</option>
+          <option>Gender</option>
           <option>Male</option>
           <option>Female</option>
         </select>
