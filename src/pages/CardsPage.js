@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
-import { useGlobalContext } from "../context/context";
-import { questionsById } from "../questions";
-
-import api from "../api";
-
-import { BsFlower1 } from "react-icons/bs";
-import { BsFillPersonCheckFill } from "react-icons/bs";
-
-import maleImg from "../assets/male_avatar.png";
 import femaleImg from "../assets/female_avatar.png";
-
+import { useGlobalContext } from "../context/context";
+import maleImg from "../assets/male_avatar.png";
+import { useNavigate } from "react-router-dom";
+import { questionsById } from "../questions";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import api from "../api";
 function CardsPage() {
+  const navigate = useNavigate();
+  const { formData } = useGlobalContext();
+  const [usersData, setUsersData] = useState();
   const { reloadUsersCounter } = useGlobalContext();
   const { activeUser, setActiveUser } = useGlobalContext();
-
   const [activeUserToBe, setActiveUserToBe] = useState(activeUser);
-  const [usersData, setUsersData] = useState();
   const [selectedGender, setSelectedGender] = useState([]);
 
   // useEffect(() => {
@@ -28,6 +25,7 @@ function CardsPage() {
       console.log("ERROR!");
     }
   };
+
   // }, []);
 
   useEffect(() => {}, [usersData]);
@@ -39,6 +37,7 @@ function CardsPage() {
       try {
         let respond = await api.get("/users");
         setUsersData(respond.data);
+        console.log(usersData);
       } catch (error) {
         console.log("ERROR!");
       }
@@ -73,7 +72,7 @@ function CardsPage() {
           <option value="Female">Female</option>
         </select>
       </div>
-      <input
+      {/* <input
         type="number"
         value={activeUserToBe}
         onChange={(e) => setActiveUserToBe(e.target.value)}
@@ -84,7 +83,7 @@ function CardsPage() {
         }}
       >
         Set Active User
-      </button>
+      </button> */}
 
       <div className="cards-container">
         {selectedGender?.map((item, index) => {
@@ -121,6 +120,12 @@ function CardsPage() {
               >
                 REMOVE USER
               </button>
+              <Link to={`/updateForm/${item.id}`} className="card-btn edit-btn">
+                EDIT PERSONAL DETAILS
+              </Link>
+              {/* <button className="card-btn" onClick={() => updateUserForm}> */}
+              {/* EDIT PERSONAL DETAILS */}
+              {/* </button> */}
               {/* </div> */}
             </div>
           );

@@ -7,7 +7,7 @@ import UserHobbies from "./pages/UserHobbies";
 import Quiz from "./pages/Quiz";
 import CardsPage from "./pages/CardsPage";
 import ChatPage from "./pages/ChatPage";
-
+import UpdateForm from "./pages/UpdateForm";
 function App() {
   const router = createBrowserRouter([
     {
@@ -33,6 +33,10 @@ function App() {
     {
       path: "/chat",
       element: <ChatPage />,
+    },
+    {
+      path: "/updateForm/:userId",
+      element: <UpdateForm />,
     },
   ]);
   return <RouterProvider router={router} />;

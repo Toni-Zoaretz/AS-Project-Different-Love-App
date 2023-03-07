@@ -12,6 +12,13 @@ const AppProvider = ({ children }) => {
   const [moviesHobby, setMoviesHobby] = useState(false);
   const [foodieHobby, setFoodieHobby] = useState(false);
   const [booksHobby, setBooksHobby] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    age: "",
+    gender: "",
+    status: "",
+    smoking: "",
+  });
 
   const handleHobbyBtn = (e) => {
     if (e.target.value === "Jazz Music") {
@@ -51,6 +58,8 @@ const AppProvider = ({ children }) => {
         booksHobby,
         setBooksHobby,
         handleHobbyBtn,
+        formData,
+        setFormData,
       }}
     >
       {children}

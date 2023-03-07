@@ -166,7 +166,7 @@ function Quiz() {
         );
       })} */}
       <div className="send-btn-container">
-        <button className="btn btn-quiz" onClick={handleSendBtn}>
+        <button className="btn btn-quiz " onClick={handleSendBtn}>
           Send
         </button>
       </div>

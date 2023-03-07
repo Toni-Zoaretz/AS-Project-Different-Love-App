@@ -10,7 +10,6 @@ function UserHobbies() {
   const navigate = useNavigate();
 
   const { handleHobbyBtn } = useGlobalContext();
-
   const handleContinueBtn = () => {
     navigate("/quiz");
   };
@@ -24,7 +23,7 @@ function UserHobbies() {
         <div className="single-hobby">
           <img src={jazzImg} alt="jazz" className="jazz-img" />
           <button
-            className="btn hobbies-btn hobbies-btn-jazz"
+            className="btn hobbies-btn hobbies-btn-jazz hobbies-btn-btn"
             onClick={handleHobbyBtn}
             value="Jazz Music"
           >

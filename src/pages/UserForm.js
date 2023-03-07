@@ -6,6 +6,7 @@ function UserForm() {
   const navigate = useNavigate();
   const { setReloadUsersCounter } = useGlobalContext();
   const { activeUser, setActiveUser } = useGlobalContext();
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
     age: "",
@@ -25,9 +26,19 @@ function UserForm() {
     });
   }
 
+  // const formValidation () => {
+  //   if (formData.fullName === '' ||
+  //   formData.age === '' ||
+  //   formData.gender === ''||
+  //   formData.smoking === '' ||
+  //   formData.status === '') {
+  //     setMessage('some field are empty')
+  //   }
+  // }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/userhobbies");
+    navigate("/userHobbies");
     console.log(formData);
     try {
       const newUserDataFromServer = await api.post("/users", formData);
