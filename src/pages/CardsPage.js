@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import api from "../api";
 import { db } from "../firebase";
-import { collection } from "firebase/firestore";
+import { collection, query, where } from "firebase/firestore";
 
 function CardsPage() {
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ function CardsPage() {
   const [selectedGender, setSelectedGender] = useState([]);
 
   const [usersList, usersListLoading] = useCollectionData(
+    // query(collection(db, "users"), where("gender", "==", "Female"))
     collection(db, "users")
   );
 
