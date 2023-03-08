@@ -1,7 +1,8 @@
 import "./App.css";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
+import { Test } from "./pages/Test";
 import UserForm from "./pages/UserForm";
 import UserHobbies from "./pages/UserHobbies";
 import Quiz from "./pages/Quiz";
@@ -12,8 +13,12 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Test />,
     },
+    // {
+    //   path: "/",
+    //   element: <Home />,
+    // },
     {
       path: "/register",
       element: <UserForm />,

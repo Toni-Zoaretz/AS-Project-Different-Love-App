@@ -18,7 +18,7 @@ function Home() {
 
   const handleHomePageBtn = () => {
     navigate("/register");
-    // googleSignIn();
+    googleSignIn();
   };
 
   const googleSignIn = () => {
