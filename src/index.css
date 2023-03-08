@@ -378,8 +378,10 @@
   flex-wrap: wrap;
 }
 
-.card div {
-  /* border: 3px solid black; */
+.user-message {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
 }
 
 .icon {

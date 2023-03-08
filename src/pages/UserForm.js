@@ -26,18 +26,26 @@ function UserForm() {
     });
   }
 
-  // const formValidation () => {
-  //   if (formData.fullName === '' ||
-  //   formData.age === '' ||
-  //   formData.gender === ''||
-  //   formData.smoking === '' ||
-  //   formData.status === '') {
-  //     setMessage('some field are empty')
-  //   }
-  // }
+  const formValidation = () => {
+    if (
+      formData.fullName === "" ||
+      formData.age === "" ||
+      formData.gender === "" ||
+      formData.smoking === "" ||
+      formData.status === ""
+    ) {
+      setMessage("Some Fields Are Empty");
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formValidation()) {
+      return;
+    }
     navigate("/userHobbies");
     console.log(formData);
     try {
@@ -88,6 +96,7 @@ function UserForm() {
         <button className="btn" type="submit" disabled={!!activeUser}>
           Submit
         </button>
+        <p className="user-message">{message}</p>
       </form>
     </div>
   );
