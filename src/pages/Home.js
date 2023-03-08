@@ -1,30 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { useCurrentUser } from "../hooks/useCurrentUser";
 import { MdOutlineCheckCircle } from "react-icons/md";
 import img1 from "../assets/undraw_intense_feeling_ft9s.png";
 function Home() {
-  const [user] = useAuthState(auth);
-  // usersList
-  // user.email
-
-  // users?email={userema}
+  const userStuff = useCurrentUser();
   const navigate = useNavigate();
 
-  if (user) {
-  }
+  React.useEffect(() => {
+    if (userStuff.state === "USER_NEED_PROFILE") {
+      navigate("/register");
+      return;
+    }
 
-  const handleHomePageBtn = () => {
-    navigate("/register");
-    googleSignIn();
-  };
+    if (userStuff.state === "USER_NEED_TRIVIA") {
+      navigate("/userHobbies");
+      return;
+    }
 
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-  };
+    if (userStuff.state === "READY") {
+      navigate("/allUsers");
+      return;
+    }
+  }, [userStuff.state, navigate]);
 
   return (
     <div className="page home-page">
@@ -100,7 +98,7 @@ function Home() {
         </ul>
         <div className="lets-start-btn-container">
           <span className="app-steps-title">OPEN YOUR HEART!</span>
-          <button className="btn" onClick={handleHomePageBtn}>
+          <button className="btn" onClick={userStuff.signIn}>
             Lets Start!
           </button>
 
@@ -124,5 +122,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

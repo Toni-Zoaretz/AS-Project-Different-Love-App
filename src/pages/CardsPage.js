@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { questionsById } from "../questions";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import api from "../api";
+import { db } from "../firebase";
+import { collection } from "firebase/firestore";
+
 function CardsPage() {
   const navigate = useNavigate();
   const { formData } = useGlobalContext();
@@ -15,7 +19,10 @@ function CardsPage() {
   const [activeUserToBe, setActiveUserToBe] = useState(activeUser);
   const [selectedGender, setSelectedGender] = useState([]);
 
-  // useEffect(() => {
+  const [usersList, usersListLoading] = useCollectionData(
+    collection(db, "users")
+  );
+
   const handleRemoveBtn = async (userId) => {
     try {
       let respond = await api.delete(`./users/${userId}`);
@@ -25,10 +32,6 @@ function CardsPage() {
       console.log("ERROR!");
     }
   };
-
-  // }, []);
-
-  useEffect(() => {}, [usersData]);
 
   useEffect(() => {
     // We want to reload users for each change of the counter
@@ -86,7 +89,7 @@ function CardsPage() {
       </button> */}
 
       <div className="cards-container">
-        {selectedGender?.map((item, index) => {
+        {usersList?.map((item, index) => {
           return (
             <div key={index} className="card">
               <div>

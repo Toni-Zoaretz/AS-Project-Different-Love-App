@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../context/context";
-import api from "../api";
+import { useCurrentUser } from "../hooks/useCurrentUser";
+// import { useGlobalContext } from "../context/context";
+// import api from "../api";
 function UserForm() {
+  const userStuff = useCurrentUser();
   const navigate = useNavigate();
-  const { setReloadUsersCounter } = useGlobalContext();
-  const { activeUser, setActiveUser } = useGlobalContext();
+  // const { setReloadUsersCounter } = useGlobalContext();
+  // const { activeUser, setActiveUser } = useGlobalContext();
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
@@ -46,12 +48,19 @@ function UserForm() {
     if (!formValidation()) {
       return;
     }
-    navigate("/userHobbies");
-    console.log(formData);
+
+    // console.log(formData);
     try {
-      const newUserDataFromServer = await api.post("/users", formData);
-      setActiveUser(newUserDataFromServer.data.id);
-      setReloadUsersCounter((c) => (c += 1));
+      await userStuff.updateUser({
+        ...formData,
+        email: userStuff.userAuthData.email,
+      });
+
+      // const newUserDataFromServer = await api.post("/users", formData);
+      // setActiveUser(newUserDataFromServer.data.id);
+      // setReloadUsersCounter((c) => (c += 1));
+
+      navigate("/userHobbies");
     } catch (error) {
       console.error(error);
     }
@@ -93,7 +102,11 @@ function UserForm() {
           <option>No</option>
           <option>In Special Occasions</option>
         </select>
-        <button className="btn" type="submit" disabled={!!activeUser}>
+        <button
+          className="btn"
+          type="submit"
+          disabled={!userStuff.userAuthData?.uid}
+        >
           Submit
         </button>
         <p className="user-message">{message}</p>

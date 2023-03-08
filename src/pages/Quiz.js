@@ -1,17 +1,16 @@
 // import React, { useState } from "react";
 import { questions } from "../questions";
 import { useGlobalContext } from "../context/context";
-import api from "../api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCurrentUser } from "../hooks/useCurrentUser";
 
 function Quiz() {
+  const userStuff = useCurrentUser();
   const navigate = useNavigate();
 
-  const { setReloadUsersCounter } = useGlobalContext();
   const { jazzMusicHobby, moviesHobby, foodieHobby, booksHobby } =
     useGlobalContext();
-  const { activeUser } = useGlobalContext();
 
   const [quizAnswers, setQuizAnswers] = useState(() => new Map());
   const [correctAnswers, setCorrectAnswers] = useState(() => new Set());
@@ -39,16 +38,18 @@ function Quiz() {
   };
 
   const handleSendBtn = async () => {
+    await userStuff.updateUser(
+      {
+        trivia: Array.from(correctAnswers),
+      },
+      { merge: true }
+    );
+
+    // await api.put(`/users/${activeUser}`, {
+    //   trivia: Array.from(correctAnswers),
+    // });
+
     navigate("/allUsers");
-
-    if (!activeUser) {
-      alert("no user");
-    }
-
-    await api.put(`/users/${activeUser}`, {
-      trivia: Array.from(correctAnswers),
-    });
-    setReloadUsersCounter((c) => (c += 1));
   };
 
   // if (!activeUser) {
