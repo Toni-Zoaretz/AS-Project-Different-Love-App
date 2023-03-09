@@ -99,7 +99,7 @@ function Home() {
         <div className="lets-start-btn-container">
           <span className="app-steps-title">OPEN YOUR HEART!</span>
           <button className="btn" onClick={userStuff.signIn}>
-            Lets Start!
+            Sign in with Google!
           </button>
 
           {/* 

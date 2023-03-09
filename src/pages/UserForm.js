@@ -68,7 +68,7 @@ function UserForm() {
   return (
     <div className="page wrapper user-form-page">
       <form className="form" onSubmit={handleSubmit}>
-        <h2>REGISTER</h2>
+        <h2>YOUR CARD INFO</h2>
         <input
           type="text"
           name="fullName"
