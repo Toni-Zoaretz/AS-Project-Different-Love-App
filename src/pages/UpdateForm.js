@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
+import { getDoc } from "firebase/firestore";
 
 import api from "../api";
 
@@ -17,12 +20,9 @@ function UpdateForm() {
   }, []);
 
   const getFormDataForUpdateUser = async () => {
-    try {
-      let respond = await api.get(`/users/${userId}`);
-      setNewUpdateFromData(respond.data);
-    } catch (error) {
-      console.log("ERROR!");
-    }
+    const docRef = doc(db, "users", auth.currentUser.uid);
+    const docSnap = await getDoc(docRef);
+    setNewUpdateFromData(docSnap.data());
   };
 
   const handleChange = (e) => {
@@ -35,22 +35,22 @@ function UpdateForm() {
     console.log(newUpdateFromData);
   };
 
-  const updateUserForm = async (e, userId) => {
+  const updateUserForm = async (e) => {
+    console.log(newUpdateFromData);
     e.preventDefault();
-    try {
-      const res = await api.put(`./users/${userId}`, {
+    const updateUser = doc(db, "users", auth.currentUser.uid);
+    setDoc(
+      updateUser,
+      {
         fullName: newUpdateFromData.fullName,
         age: newUpdateFromData.age,
         gender: newUpdateFromData.gender,
         status: newUpdateFromData.status,
         smoking: newUpdateFromData.smoking,
-      });
-      console.log(res.data);
-      navigate("/allUsers");
-    } catch (error) {
-      console.log("ERROR", error);
-    }
-    // updateUserForm();
+      },
+      { merge: true }
+    );
+    navigate("/allUsers");
   };
 
   return (

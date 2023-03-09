@@ -57,18 +57,18 @@ export function useCurrentUser() {
 
   const userDocumentData = userDocument.data();
 
-  // Sanity check
-  const mustHaveFields = [
-    "email",
-    "age",
-    "gender",
-    "status",
-    "fullName",
-    "smoking",
-  ];
-  if (mustHaveFields.some((f) => !userDocumentData[f])) {
-    throw new Error("field is bad!!!!");
-  }
+  // // Sanity check
+  // const mustHaveFields = [
+  //   "email",
+  //   "age",
+  //   "gender",
+  //   "status",
+  //   "fullName",
+  //   "smoking",
+  // ];
+  // if (mustHaveFields.some((f) => !userDocumentData[f])) {
+  //   throw new Error("field is bad!!!!");
+  // }
 
   if (!userDocumentData.trivia) {
     return {

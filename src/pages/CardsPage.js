@@ -9,8 +9,13 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import api from "../api";
 import { db } from "../firebase";
 import { collection, query, where } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
+import { useCurrentUser } from "../hooks/useCurrentUser";
 
 function CardsPage() {
+  const userStuff = useCurrentUser();
+  console.log(userStuff);
+
   const navigate = useNavigate();
   const { formData } = useGlobalContext();
   const [usersData, setUsersData] = useState();
@@ -24,14 +29,16 @@ function CardsPage() {
     collection(db, "users")
   );
 
-  const handleRemoveBtn = async (userId) => {
+  const handleRemoveUserBtn = async (userId) => {
     try {
-      let respond = await api.delete(`./users/${userId}`);
-      console.log(respond.data);
-      setUsersData(usersData.filter((item) => item.id !== userId));
+      await deleteDoc(doc(db, "users", userId));
     } catch (error) {
       console.log("ERROR!");
     }
+  };
+
+  const handleChatBtn = () => {
+    navigate("/chat");
   };
 
   useEffect(() => {
@@ -120,13 +127,16 @@ function CardsPage() {
               {/* <div className="card-btn-container"> */}
               <button
                 className="card-btn"
-                onClick={() => handleRemoveBtn(item.id)}
+                onClick={() => handleRemoveUserBtn(userStuff.userAuthData.uid)}
               >
                 REMOVE USER
               </button>
               <Link to={`/updateForm/${item.id}`} className="card-btn edit-btn">
                 EDIT PERSONAL DETAILS
               </Link>
+              <button className="card-btn chat-btn" onClick={handleChatBtn}>
+                CHAT
+              </button>
               {/* <button className="card-btn" onClick={() => updateUserForm}> */}
               {/* EDIT PERSONAL DETAILS */}
               {/* </button> */}

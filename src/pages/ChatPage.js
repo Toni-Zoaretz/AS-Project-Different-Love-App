@@ -8,7 +8,6 @@ function ChatPage() {
   const [user] = useAuthState(auth);
   return (
     <div className="App">
-      ChatPage
       <NavBar />
       {!user ? (
         <Welcome />

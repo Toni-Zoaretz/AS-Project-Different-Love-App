@@ -67,6 +67,10 @@
   color: #333;
 }
 
+.cards-container .chat-btn {
+  padding: 4px 60px;
+}
+
 /* /* -------------------form----------------------- */
 
 .wrapper {

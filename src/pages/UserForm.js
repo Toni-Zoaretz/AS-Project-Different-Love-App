@@ -48,7 +48,6 @@ function UserForm() {
     if (!formValidation()) {
       return;
     }
-
     // console.log(formData);
     try {
       await userStuff.updateUser({
