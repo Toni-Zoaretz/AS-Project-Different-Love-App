@@ -23,7 +23,7 @@ export function useCurrentUser() {
       throw new Error("cant update before maybeUserUid is here");
     }
 
-    await setDoc(doc(db, "users", maybeUserUid), newUserData, { merge: true });
+    await setDoc(doc(db, "users", maybeUserUid), newUserData, { merge });
   }
 
   if (userAuthLoading) {

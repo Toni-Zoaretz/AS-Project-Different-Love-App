@@ -26,9 +26,10 @@ function Home() {
 
   return (
     <div className="page home-page">
+      {/* {userStuff.state === "LOADING_USER_DATA" ? "" : ""} */}
       <div className="home-info">
         <h1>
-          <p className="home-title">WELCOME TO A DIFFERENT</p>
+          <p className="home-title">WELCOME TO A DIFFERENT {userStuff.state}</p>
           <p>LOVE APP</p>
         </h1>
         <span>

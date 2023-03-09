@@ -3,9 +3,11 @@ import GoogleSignin from "../img/btn_google_signin_dark_pressed_web.png";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -14,6 +16,7 @@ const NavBar = () => {
 
   const signOut = () => {
     auth.signOut();
+    navigate("/");
   };
 
   return (

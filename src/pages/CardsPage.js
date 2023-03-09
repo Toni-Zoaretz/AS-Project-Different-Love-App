@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { questionsById } from "../questions";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import api from "../api";
+import {
+  useCollectionData,
+  useCollection,
+} from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import { collection, query, where } from "firebase/firestore";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -14,26 +16,31 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 
 function CardsPage() {
   const userStuff = useCurrentUser();
-  console.log(userStuff);
-
   const navigate = useNavigate();
-  const { formData } = useGlobalContext();
-  const [usersData, setUsersData] = useState();
-  const { reloadUsersCounter } = useGlobalContext();
-  const { activeUser, setActiveUser } = useGlobalContext();
-  const [activeUserToBe, setActiveUserToBe] = useState(activeUser);
-  const [selectedGender, setSelectedGender] = useState([]);
+  const [filterGender, setFilterGender] = useState();
 
-  const [usersList, usersListLoading] = useCollectionData(
-    // query(collection(db, "users"), where("gender", "==", "Female"))
-    collection(db, "users")
+  const filtersWheres = [];
+
+  if (filterGender) {
+    filtersWheres.push(where("gender", "==", filterGender));
+  }
+
+  const [usersListWithMetadata, usersListLoading] = useCollection(
+    query(collection(db, "users"), ...filtersWheres)
+    //collection(db, "users"),
   );
+
+  const usersList = usersListWithMetadata?.docs.map((d) => ({
+    ...d.data(),
+    id: d.id,
+  }));
 
   const handleRemoveUserBtn = async (userId) => {
     try {
       await deleteDoc(doc(db, "users", userId));
     } catch (error) {
       console.log("ERROR!");
+      // console.log(userId);
     }
   };
 
@@ -41,43 +48,51 @@ function CardsPage() {
     navigate("/chat");
   };
 
-  useEffect(() => {
-    // We want to reload users for each change of the counter
-    reloadUsersCounter?.toString();
-    const getData = async () => {
-      try {
-        let respond = await api.get("/users");
-        setUsersData(respond.data);
-        console.log(usersData);
-      } catch (error) {
-        console.log("ERROR!");
-      }
-    };
-    getData();
-  }, [reloadUsersCounter]);
+  // useEffect(() => {
+  //   // We want to reload users for each change of the counter
+  //   reloadUsersCounter?.toString();
+  //   const getData = async () => {
+  //     try {
+  //       let respond = await api.get("/users");
+  //       setUsersData(respond.data);
+  //       console.log(usersData);
+  //     } catch (error) {
+  //       console.log("ERROR!");
+  //     }
+  //   };
+  //   getData();
+  // }, [reloadUsersCounter]);
 
-  function filteredOptions(e) {
-    if (e.target.value === "All") {
-      setSelectedGender(usersData);
-      return;
-    }
-    const filterData = usersData.filter(
-      (userGender) => userGender.gender === e.target.value
-    );
-    console.log(filterData);
-    setSelectedGender(filterData);
-  }
+  // function filteredOptions(e) {
+  //   if (e.target.value === "All") {
+  //     setSelectedGender(usersData);
+  //     return;
+  //   }
+  //   const filterData = usersData.filter(
+  //     (userGender) => userGender.gender === e.target.value
+  //   );
+  //   console.log(filterData);
+  //   setSelectedGender(filterData);
+  // }
 
-  useEffect(() => {
-    setSelectedGender(usersData);
-  }, [usersData]);
+  // useEffect(() => {
+  //   setSelectedGender(usersData);
+  // }, [usersData]);
 
   return (
     <div className="page cards-page">
       <div className="hobbies-title-div container-users-title">
         <h2 className="users-title">ALL USERS</h2>
         <span>Filter:</span>
-        <select name="gender" onChange={(e) => filteredOptions(e)}>
+        <select
+          name="gender"
+          value={filterGender ?? "All"}
+          onChange={(e) =>
+            setFilterGender(
+              e.target.value === "All" ? undefined : e.target.value
+            )
+          }
+        >
           <option value="All">All</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -124,23 +139,29 @@ function CardsPage() {
                   ))}
                 </div>
               </div>
-              {/* <div className="card-btn-container"> */}
-              <button
-                className="card-btn"
-                onClick={() => handleRemoveUserBtn(userStuff.userAuthData.uid)}
-              >
-                REMOVE USER
-              </button>
-              <Link to={`/updateForm/${item.id}`} className="card-btn edit-btn">
-                EDIT PERSONAL DETAILS
-              </Link>
-              <button className="card-btn chat-btn" onClick={handleChatBtn}>
-                CHAT
-              </button>
-              {/* <button className="card-btn" onClick={() => updateUserForm}> */}
-              {/* EDIT PERSONAL DETAILS */}
-              {/* </button> */}
-              {/* </div> */}
+              {item.id === userStuff.userAuthData.uid ? (
+                <>
+                  <button
+                    className="card-btn"
+                    onClick={() =>
+                      handleRemoveUserBtn(userStuff.userAuthData.uid)
+                    }
+                  >
+                    REMOVE USER
+                  </button>
+
+                  <Link
+                    to={`/updateForm/${item.id}`}
+                    className="card-btn edit-btn"
+                  >
+                    EDIT PERSONAL DETAILS
+                  </Link>
+                </>
+              ) : (
+                <button className="card-btn chat-btn" onClick={handleChatBtn}>
+                  CHAT
+                </button>
+              )}
             </div>
           );
         })}
