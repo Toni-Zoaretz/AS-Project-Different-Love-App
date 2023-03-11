@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import { questions } from "../questions";
 import { useGlobalContext } from "../context/context";
 import { useState } from "react";
@@ -15,7 +14,6 @@ function Quiz() {
   const [quizAnswers, setQuizAnswers] = useState(() => new Map());
   const [correctAnswers, setCorrectAnswers] = useState(() => new Set());
 
-  //  const { userQuizAnswers, setUserQuizAnswers } = useGlobalContext();
   const handleChange = (questionIndex, answerIndex) => {
     const theQuestion = questions[questionIndex];
     setCorrectAnswers((set) => {
@@ -30,11 +28,9 @@ function Quiz() {
 
     setQuizAnswers((prev) => {
       prev.set(questionIndex, answerIndex);
-      // return prev;
 
       return new Map(prev);
     });
-    // console.log(e.target.value);
   };
 
   const handleSendBtn = async () => {
@@ -45,17 +41,8 @@ function Quiz() {
       { merge: true }
     );
 
-    // await api.put(`/users/${activeUser}`, {
-    //   trivia: Array.from(correctAnswers),
-    // });
-
     navigate("/allUsers");
   };
-
-  // if (!activeUser) {
-  //   return <div className="page">Complete registration first!</div>;
-  // }
-
   return (
     <div className="page quiz-page">
       <div className="hobbies-title-div">
@@ -145,27 +132,6 @@ function Quiz() {
           })}
         </div>
       ) : null}
-
-      {/* {questions.map((item, questionIndex) => {
-        return (
-          <div key={item.id} className="quiz-div">
-            <h2>{item.title}</h2>
-            {[0, 1, 2, 3].map((answerIndex) => {
-              return (
-                <div className="answer-div">
-                  <input
-                    type="radio"
-                    value={item.answers[answerIndex]}
-                    checked={quizAnswers.get(questionIndex) === answerIndex}
-                    onChange={() => handleChange(questionIndex, answerIndex)}
-                  />
-                  <span>{item.answers[answerIndex]}</span>
-                </div>
-              );
-            })}
-          </div>
-        );
-      })} */}
       <div className="send-btn-container">
         <button className="btn btn-quiz " onClick={handleSendBtn}>
           Send

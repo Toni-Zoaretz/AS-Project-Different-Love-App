@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useGlobalContext } from "../context/context";
+// import { useGlobalContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { getDoc } from "firebase/firestore";
 
-import api from "../api";
+// import api from "../api";
 
 function UpdateForm() {
   const navigate = useNavigate();
 
   const { userId } = useParams();
-  const { formData } = useGlobalContext();
+  // const { formData } = useGlobalContext();
   const [newUpdateFromData, setNewUpdateFromData] = useState([]);
 
   useEffect(() => {

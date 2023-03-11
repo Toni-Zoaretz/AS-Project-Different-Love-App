@@ -12,11 +12,13 @@ import SendMessage from "./SendMessage";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
+  // const { participantA, participantA } = useParams();
   const scroll = useRef();
 
   useEffect(() => {
     const q = query(
       collection(db, "messages"),
+      // where("sender", "==="),
       orderBy("createdAt"),
       limit(50)
     );

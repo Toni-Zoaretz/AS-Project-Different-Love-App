@@ -27,7 +27,6 @@ function CardsPage() {
 
   const [usersListWithMetadata, usersListLoading] = useCollection(
     query(collection(db, "users"), ...filtersWheres)
-    //collection(db, "users"),
   );
 
   const usersList = usersListWithMetadata?.docs.map((d) => ({
@@ -40,44 +39,12 @@ function CardsPage() {
       await deleteDoc(doc(db, "users", userId));
     } catch (error) {
       console.log("ERROR!");
-      // console.log(userId);
     }
   };
 
   const handleChatBtn = () => {
     navigate("/chat");
   };
-
-  // useEffect(() => {
-  //   // We want to reload users for each change of the counter
-  //   reloadUsersCounter?.toString();
-  //   const getData = async () => {
-  //     try {
-  //       let respond = await api.get("/users");
-  //       setUsersData(respond.data);
-  //       console.log(usersData);
-  //     } catch (error) {
-  //       console.log("ERROR!");
-  //     }
-  //   };
-  //   getData();
-  // }, [reloadUsersCounter]);
-
-  // function filteredOptions(e) {
-  //   if (e.target.value === "All") {
-  //     setSelectedGender(usersData);
-  //     return;
-  //   }
-  //   const filterData = usersData.filter(
-  //     (userGender) => userGender.gender === e.target.value
-  //   );
-  //   console.log(filterData);
-  //   setSelectedGender(filterData);
-  // }
-
-  // useEffect(() => {
-  //   setSelectedGender(usersData);
-  // }, [usersData]);
 
   return (
     <div className="page cards-page">
@@ -98,19 +65,6 @@ function CardsPage() {
           <option value="Female">Female</option>
         </select>
       </div>
-      {/* <input
-        type="number"
-        value={activeUserToBe}
-        onChange={(e) => setActiveUserToBe(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          setActiveUser(activeUserToBe);
-        }}
-      >
-        Set Active User
-      </button> */}
-
       <div className="cards-container">
         {usersList?.map((item, index) => {
           return (
@@ -132,10 +86,7 @@ function CardsPage() {
                 <div className="card-items card-title">Hobbies:</div>
                 <div className="card-items hobbies-answers ">
                   {item.trivia?.map((q) => (
-                    <p>
-                      {/* {questionsById[q].title}: {questionsById[q].correctAnswer} */}
-                      {questionsById[q].subject}
-                    </p>
+                    <p>{questionsById[q].subject}</p>
                   ))}
                 </div>
               </div>

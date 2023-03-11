@@ -67,13 +67,19 @@ function UserForm() {
 
   return (
     <div className="page wrapper user-form-page">
+      {/* {userStuff.state === "LOADING_USER_DATA" ||
+      userStuff.state === "AUTH_LOADING" ||
+      userStuff.state === "NEED_LOGIN" ||
+      userStuff.state === "USER_NEED_PROFILE"
+        ? "Loading...."
+        : ""} */}
       <form className="form" onSubmit={handleSubmit}>
         <h2>YOUR CARD INFO</h2>
         <input
           type="text"
           name="fullName"
           value={formData.fullName}
-          placeholder="Full Name"
+          placeholder="Full Name / Nickname"
           onChange={handleChange}
         ></input>
         <input

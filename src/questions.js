@@ -39,10 +39,6 @@ export const questions = [
   },
 ];
 
-// const step1 = questions.map((q) => [q.id, q]);
-
-// [["1", {...}], ["2", {...}]]
-
 export const questionsById = Object.fromEntries(
   questions.map((q) => [q.id, q])
 );
