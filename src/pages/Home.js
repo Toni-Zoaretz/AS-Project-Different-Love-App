@@ -30,7 +30,9 @@ function Home() {
     <div className="page home-page">
       {userStuff.state === "LOADING_USER_DATA" ||
       userStuff.state === "AUTH_LOADING" ? (
-        <h1>Loading...</h1>
+        <div className="loader">
+          <h2>LOADING...</h2>
+        </div>
       ) : (
         <>
           <div className="home-info">
