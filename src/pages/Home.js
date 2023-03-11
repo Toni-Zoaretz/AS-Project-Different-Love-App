@@ -37,9 +37,7 @@ function Home() {
         <>
           <div className="home-info">
             <h1>
-              <p className="home-title">
-                WELCOME TO A DIFFERENT {userStuff.state}
-              </p>
+              <p className="home-title">WELCOME TO A DIFFERENT</p>
               <p>LOVE APP</p>
             </h1>
             <span>

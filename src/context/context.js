@@ -12,6 +12,10 @@ const AppProvider = ({ children }) => {
   const [moviesHobby, setMoviesHobby] = useState(false);
   const [foodieHobby, setFoodieHobby] = useState(false);
   const [booksHobby, setBooksHobby] = useState(false);
+  const [styleJazzBtn, setStyleJazzBtn] = useState(false);
+  const [styleMovies, setStyleMovies] = useState(false);
+  const [styleFoodie, setStyleFoodie] = useState(false);
+  const [styleBooks, setStyleBooks] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     age: "",
@@ -23,15 +27,19 @@ const AppProvider = ({ children }) => {
   const handleHobbyBtn = (e) => {
     if (e.target.value === "Jazz Music") {
       setJazzMusicHobby(true);
+      setStyleJazzBtn(!styleJazzBtn);
     }
     if (e.target.value === "Movies") {
       setMoviesHobby(true);
+      setStyleMovies(!styleMovies);
     }
     if (e.target.value === "Foodie") {
       setFoodieHobby(true);
+      setStyleFoodie(!styleFoodie);
     }
     if (e.target.value === "Books") {
       setBooksHobby(true);
+      setStyleBooks(!styleBooks);
     }
     console.log(e.target.value);
   };
@@ -60,6 +68,14 @@ const AppProvider = ({ children }) => {
         handleHobbyBtn,
         formData,
         setFormData,
+        styleJazzBtn,
+        setStyleJazzBtn,
+        styleBooks,
+        setStyleBooks,
+        styleMovies,
+        setStyleMovies,
+        styleFoodie,
+        setStyleFoodie,
       }}
     >
       {children}

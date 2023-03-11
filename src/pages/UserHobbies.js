@@ -10,6 +10,8 @@ function UserHobbies() {
   const navigate = useNavigate();
 
   const { handleHobbyBtn } = useGlobalContext();
+  const { styleJazzBtn, styleBooks, styleMovies, styleFoodie } =
+    useGlobalContext();
   const handleContinueBtn = () => {
     navigate("/quiz");
   };
@@ -23,7 +25,9 @@ function UserHobbies() {
         <div className="single-hobby">
           <img src={jazzImg} alt="jazz" className="jazz-img" />
           <button
-            className="btn hobbies-btn hobbies-btn-jazz hobbies-btn-btn"
+            className={
+              styleJazzBtn ? " hobbies-btn hobbies-btn-clicked" : " hobbies-btn"
+            }
             onClick={handleHobbyBtn}
             value="Jazz Music"
           >
@@ -34,7 +38,9 @@ function UserHobbies() {
         <div className="single-hobby">
           <img src={moviesImg} alt="movies" className="movies-img" />
           <button
-            className="btn hobbies-btn hobbies-btn-btn"
+            className={
+              styleMovies ? " hobbies-btn hobbies-btn-clicked" : " hobbies-btn"
+            }
             onClick={handleHobbyBtn}
             value="Movies"
           >
@@ -45,7 +51,9 @@ function UserHobbies() {
         <div className="single-hobby">
           <img src={foodieImg} alt="food" className="foodie-img" />
           <button
-            className="btn hobbies-btn hobbies-btn-btn hobbies-btn-foodie"
+            className={
+              styleFoodie ? " hobbies-btn hobbies-btn-clicked" : " hobbies-btn"
+            }
             onClick={handleHobbyBtn}
             value="Foodie"
           >
@@ -56,7 +64,9 @@ function UserHobbies() {
         <div className="single-hobby">
           <img src={booksImg} alt="books" className="books-img" />
           <button
-            className="btn hobbies-btn hobbies-btn-btn books-btn"
+            className={
+              styleBooks ? " hobbies-btn hobbies-btn-clicked" : " hobbies-btn"
+            }
             onClick={handleHobbyBtn}
             value="Books"
           >
