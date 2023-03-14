@@ -123,6 +123,9 @@ function Home() {
                 <AiOutlineGoogle className="google-icon" />
               </button>
               {/* {userStuff.state === "LOADING_USER_DATA" ? "loading" : "" } */}
+              <div>
+                <h5> Copyright© Toni Zoaretz </h5>
+              </div>
             </div>
           </div>
         </>
