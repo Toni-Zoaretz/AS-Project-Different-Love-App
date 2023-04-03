@@ -6,7 +6,7 @@ I implement the project using `HTML`,`CSS`,`JavaScript`,`React`.
 
 ### Project Link:
 
-https://toni-dating-app.netlify.app/allUsers
+https://toni-dating-app.netlify.app/
 
 ### Project Technologies:
 
