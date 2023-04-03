@@ -49,6 +49,11 @@
   color: #333;
 }
 
+h5 {
+  color: #333;
+  padding-top: 4px;
+}
+
 .app-steps ul {
   list-style: none;
 }

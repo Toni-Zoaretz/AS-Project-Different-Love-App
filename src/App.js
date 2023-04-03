@@ -2,7 +2,6 @@ import "./App.css";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-// import { Test } from "./pages/Test";
 import UserForm from "./pages/UserForm";
 import UserHobbies from "./pages/UserHobbies";
 import Quiz from "./pages/Quiz";
@@ -11,10 +10,6 @@ import ChatPage from "./pages/ChatPage";
 import UpdateForm from "./pages/UpdateForm";
 function App() {
   const router = createBrowserRouter([
-    // {
-    //   path: "/",
-    //   element: <Test />,
-    // },
     {
       path: "/",
       element: <Home />,

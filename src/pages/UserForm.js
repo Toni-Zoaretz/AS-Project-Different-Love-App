@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../hooks/useCurrentUser";
-// import { useGlobalContext } from "../context/context";
-// import api from "../api";
 function UserForm() {
   const userStuff = useCurrentUser();
   const navigate = useNavigate();
-  // const { setReloadUsersCounter } = useGlobalContext();
-  // const { activeUser, setActiveUser } = useGlobalContext();
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
@@ -48,16 +44,11 @@ function UserForm() {
     if (!formValidation()) {
       return;
     }
-    // console.log(formData);
     try {
       await userStuff.updateUser({
         ...formData,
         email: userStuff.userAuthData.email,
       });
-
-      // const newUserDataFromServer = await api.post("/users", formData);
-      // setActiveUser(newUserDataFromServer.data.id);
-      // setReloadUsersCounter((c) => (c += 1));
 
       navigate("/userHobbies");
     } catch (error) {
@@ -67,12 +58,6 @@ function UserForm() {
 
   return (
     <div className="page wrapper user-form-page">
-      {/* {userStuff.state === "LOADING_USER_DATA" ||
-      userStuff.state === "AUTH_LOADING" ||
-      userStuff.state === "NEED_LOGIN" ||
-      userStuff.state === "USER_NEED_PROFILE"
-        ? "Loading...."
-        : ""} */}
       <form className="form" onSubmit={handleSubmit}>
         <h2>YOUR CARD INFO</h2>
         <input

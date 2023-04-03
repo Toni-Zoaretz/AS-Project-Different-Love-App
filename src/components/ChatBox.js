@@ -12,13 +12,11 @@ import SendMessage from "./SendMessage";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
-  // const { participantA, participantA } = useParams();
   const scroll = useRef();
 
   useEffect(() => {
     const q = query(
       collection(db, "messages"),
-      // where("sender", "==="),
       orderBy("createdAt"),
       limit(50)
     );
@@ -40,7 +38,6 @@ const ChatBox = () => {
           <Message key={message.id} message={message} />
         ))}
       </div>
-      {/* when a new message enters the chat, the screen scrolls dowwn to the scroll div */}
       <span ref={scroll}></span>
       <SendMessage scroll={scroll} />
     </main>

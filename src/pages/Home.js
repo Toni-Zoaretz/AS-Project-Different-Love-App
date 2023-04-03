@@ -51,15 +51,14 @@ function Home() {
                 <span>
                   <MdOutlineCheckCircle className="icon-home-page" />
                 </span>
-                You need to sign in with Google with the button below.
+                Sign in with Google with the button below.
               </li>
               <li>
                 <span>
                   <MdOutlineCheckCircle className="icon-home-page" />
                 </span>
                 You will then be taken to your card creation page where you can
-                fill in details about yourself that will be available to
-                everyone in the app.
+                fill in details about yourself.
               </li>
               <li>
                 <span>
@@ -122,9 +121,8 @@ function Home() {
                 Sign in with Google!
                 <AiOutlineGoogle className="google-icon" />
               </button>
-              {/* {userStuff.state === "LOADING_USER_DATA" ? "loading" : "" } */}
               <div>
-                <h5> Copyright© Toni Zoaretz </h5>
+                <h5> Copyright © Toni Zoaretz </h5>
               </div>
             </div>
           </div>

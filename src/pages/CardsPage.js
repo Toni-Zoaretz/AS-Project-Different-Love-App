@@ -1,14 +1,10 @@
 import femaleImg from "../assets/female_avatar.png";
-import { useGlobalContext } from "../context/context";
 import maleImg from "../assets/male_avatar.png";
 import { useNavigate } from "react-router-dom";
 import { questionsById } from "../questions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  useCollectionData,
-  useCollection,
-} from "react-firebase-hooks/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import { collection, query, where } from "firebase/firestore";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -25,7 +21,7 @@ function CardsPage() {
     filtersWheres.push(where("gender", "==", filterGender));
   }
 
-  const [usersListWithMetadata, usersListLoading] = useCollection(
+  const [usersListWithMetadata] = useCollection(
     query(collection(db, "users"), ...filtersWheres)
   );
 
