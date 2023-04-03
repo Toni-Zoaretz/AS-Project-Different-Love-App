@@ -1,7 +1,8 @@
 # 💜 Different Love App
 
 I was given a task @AppleSeeds Bootcamp to make an responsive web application using React that includes CRUD functionality.
-I decided to build an application that allows people to showcase their hobbies and interests, and interact with others who share similar passions.<br>
+I decided to build an application that allows people to showcase their hobbies and interests, and interact with others who share similar passions.
+Ultimately,all users arrive at the same chat box, where they can connect with each other and discuss their hobbies and interests in real time.<br>
 I implement the project using `HTML`,`CSS`,`JavaScript`,`React`.
 
 ### Project Link:
